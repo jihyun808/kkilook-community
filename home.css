@@ -1,0 +1,132 @@
+/* Home Page CSS  */
+
+@import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum:wght@400;700&display=swap');
+    
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+        display: flex;
+        flex-direction: column;
+        font-family: 'Gowun Dodum', sans-serif;
+        max-width: 1000px;
+        margin: 10px auto 0 auto;
+        padding: 20px;
+    }
+
+    main {
+        flex: 1;
+        margin-bottom: 60px;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    header .Top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    h1 {
+      display: inline;
+      margin: 10px 0;
+    }
+
+    .category a {
+      margin-right: 20px;
+      color: #007bff;
+    }
+
+    .myPage {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      padding: 10px 0;
+      margin: 10px 0;
+      flex: 1;
+    }
+
+    .myPage a {
+      color: #007bff;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .exTop {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .search-form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .search-form .search-input-group {
+      display: flex;
+      gap: 8px;
+    }
+
+    .search-form .search-sort {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 5px;
+    }
+
+    main {
+      margin-bottom: 60px;
+    }
+
+    .writeBtn {
+      background-color: #007bff;
+      color: white;
+      padding: 6px 12px;
+      text-decoration: none;
+      border-radius: 5px;
+      font-size: 14px;
+    }
+    .writeBtn:hover {
+      background-color: #0056b3;
+    }
+
+    .post-preview {
+      border-bottom: 1px solid #ccc;
+      padding: 10px 0;
+    }
+
+    .post-preview a {
+      font-weight: bold;
+      color: #333;
+    }
+
+    .post-preview small {
+      color: #777;
+      margin-left: 10px;
+    }
+
+    #wrapper {
+      min-height: calc(100vh - 60px);
+      padding-bottom: 60px;
+      box-sizing: border-box;
+    }
+
+    footer {
+      width: 100%;
+      background-color: #f8f9fa;
+      border-top: 1px solid #eee;
+      padding: 10px;
+      text-align: center;
+      position: relative; 
+    }

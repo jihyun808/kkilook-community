@@ -1,0 +1,60 @@
+/* auth.css - 로 그 인 /회 원 가 입 /마 이 페 이 지  스 타 일  */ 
+  body { 
+    margin: 0; 
+    font-family: 'Gowun Dodum', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    height: 100vh;
+  }
+  
+  .form-container { 
+    padding: 40px 30px; 
+    border-radius: 15px; 
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); 
+    text-align: center; 
+    width: 320px;
+    background-color: #f8f9fa;
+  }
+
+  
+  h2 { 
+    margin-top: 0; 
+    margin-bottom: 20px; 
+    text-align: center;
+  }
+  
+  input { 
+    width: 100%; 
+    padding: 10px; 
+    margin: 10px 0; border: 1px solid 
+    #ccc;
+    border-radius: 8px; font-size: 16px; box-sizing: border-box;
+  }
+  
+  button { 
+    width: 100%; 
+    padding: 12px; 
+    background-color: #007bff; 
+    color: white; 
+    border: none; 
+    border-radius: 8px; 
+    font-weight: bold; 
+    font-size: 16px; 
+    cursor: pointer; 
+    margin-top: 10px;
+  }
+  
+  button:hover { 
+    background-color:#0056b3;
+  }
+  
+  p { margin-top: 15px; margin-bottom: 0; font-size: 14px; text-align: 
+    center;
+  }
+  
+  a { color: #007bff; text-decoration: none; font-weight: bold;
+  }
+  
+  img { display: block; margin: 0 auto 20px; border-radius: 50%;
+  }
