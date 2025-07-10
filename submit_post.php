@@ -39,17 +39,17 @@ if ($content === '' && empty($_FILES['file']['name'])) {
 }
 $user_id = $_SESSION['user_id'];
 
-$upload_dir = __DIR__ . "/uploads/";  // ✅ 서버 절대경로
+$upload_dir = __DIR__ . '/../kkilookCM_F/';
 
 if (!is_dir($upload_dir)) {
-  mkdir($upload_dir, 0755, true); // 폴더 없으면 생성
+  mkdir($upload_dir, 0755, true);
 }
 
 $original_name = null;
 $filename = null;
 
 if (isset($_FILES['file']) && $_FILES['file']['error'] === 0) {
-  $original_name = $_FILES['file']['name'];  // ✅ 원본 파일명 저장
+  $original_name = $_FILES['file']['name'];
 
   $ext = strtolower(pathinfo($original_name, PATHINFO_EXTENSION));
   $dangerous_exts = ['php', 'exe', 'js', 'sh', 'bat', 'cgi', 'pl'];
@@ -58,32 +58,26 @@ if (isset($_FILES['file']) && $_FILES['file']['error'] === 0) {
     die("<script>alert('🚫 이 형식의 파일은 업로드할 수 없습니다.'); history.back();</script>");
   }
 
-  // MIME 타입 검사 시작
   $finfo = finfo_open(FILEINFO_MIME_TYPE);
   $mime = finfo_file($finfo, $_FILES['file']['tmp_name']);
   finfo_close($finfo);
 
-  // 허용된 MIME 목록
   $allowed_mime_types = [
-    // 이미지
     'image/jpeg', 'image/png', 'image/gif', 'image/webp',
-    // 영상
     'video/mp4', 'video/webm', 'video/ogg', 'video/quicktime',
-    // 문서 및 압축
     'application/pdf',
     'application/zip',
     'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
     'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
     'application/vnd.openxmlformats-officedocument.presentationml.presentation',
-    'application/octet-stream', // fallback
-    'application/x-hwp' // 한글파일
+    'application/octet-stream',
+    'application/x-hwp'
   ];
 
   if (!in_array($mime, $allowed_mime_types)) {
     die("<script>alert('❌ 지원하지 않는 파일 형식입니다. (" . htmlspecialchars($mime) . ")'); history.back();</script>");
   }
 
-  // 파일 저장
   $newname = uniqid("file_") . "." . $ext;
   $filepath = $upload_dir . $newname;
 
@@ -91,11 +85,10 @@ if (isset($_FILES['file']) && $_FILES['file']['error'] === 0) {
     die("파일 업로드에 실패했습니다.");
   }
 
-  $filename = $newname;  // 서버에 저장될 실제 파일명
+  $filename = $newname; 
 }
 
-// DB 연결
-$conn = new mysqli("localhost", "webuser", "webpass", "user_db");
+require_once '/var/www/dbinfo.php';
 if ($conn->connect_error) {
   die("DB 연결 실패: " . $conn->connect_error);
 }

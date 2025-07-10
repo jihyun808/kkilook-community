@@ -4,8 +4,7 @@ ini_set('display_errors', 1);
 error_reporting(E_ALL);
 session_start();
 
-// DB 연결
-$conn = new mysqli("localhost", "webuser", "webpass", "user_db");
+require_once '/var/www/dbinfo.php';
 if ($conn->connect_error) die("DB 연결 실패: " . $conn->connect_error);
 $conn->set_charset("utf8");
 
@@ -34,8 +33,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_post_id'])) {
 
   // 첨부파일 삭제
   $filename = basename($post_data['file_name']);
-  if (!empty($filename) && file_exists("uploads/" . $filename)) {
-      unlink("uploads/" . $filename);
+  if (!empty($filename) && file_exists("kkilookCM_F/" . $filename)) {
+      unlink("kkilookCM_F/" . $filename);
 }
 
   // 댓글 삭제
@@ -105,7 +104,7 @@ if (!$post) die("게시글을 찾을 수 없습니다.");
   <div class="file">
     <?php
       $ext = strtolower(pathinfo($post['file_name'], PATHINFO_EXTENSION));
-      $file_url = 'uploads/' . urlencode($post['file_name']);
+      $file_url = 'download.php?file=' . urlencode($post['file_name']) . '&name=' . urlencode($post['original_name']);
 
       $img_exts = ['jpg', 'jpeg', 'png', 'gif', 'webp'];
       $video_exts = ['mp4', 'webm', 'ogg', 'mov'];
@@ -127,7 +126,7 @@ if (!$post) die("게시글을 찾을 수 없습니다.");
 
 
     <?php endif; ?>
-      <p>📎 첨부파일: <a href="<?= $file_url ?>" download="<?= htmlspecialchars($post['original_name']) ?>"><?= htmlspecialchars($post['original_name']) ?></a></p>
+     <p>📎 첨부파일: <a href="<?= $file_url ?>"><?= htmlspecialchars($post['original_name']) ?></a></p>
   </div>
 <?php endif; ?>
 
@@ -238,12 +237,10 @@ if (!$post) die("게시글을 찾을 수 없습니다.");
   }
 
   function toggleEdit(commentId) {
-    // 먼저 모든 수정 폼을 닫고
     document.querySelectorAll('[id^="edit-form-"]').forEach(form => {
     form.style.display = 'none';
     });
     
-    // 해당 댓글만 열기
     const form = document.getElementById('edit-form-' + commentId);
     form.querySelector('textarea').focus();
     form.style.display = 'block';

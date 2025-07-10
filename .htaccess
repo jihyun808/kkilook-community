@@ -1,0 +1,35 @@
+# PHP 해석 차단 (서버 보안을 위해 PHP 코드 실행 방지)
+php_flag engine off
+
+# PHP 확장자 직접 접근 차단
+<FilesMatch "\.(php|phar|pht)$">
+    Deny from all
+</FilesMatch>
+
+# 숨김 파일 (예: .htaccess) 접근 차단
+<FilesMatch "^\.">
+    Deny from all
+</FilesMatch>
+
+# /var/www/kkilookCM_F 디렉토리 내의 PHP 파일 접근 차단
+<Directory /var/www/kkilookCM_F>
+    Order Deny,Allow
+    Deny from all
+</Directory>
+
+# download.php 파일에 대한 직접 접근 차단
+<Files "download.php">
+    Deny from all
+</Files>
+
+# 특정 파일만 다운로드 가능하도록 설정 (이미지, PDF 등)
+<FilesMatch "\.(jpg|jpeg|png|gif|pdf|zip|mp4|mp3|txt)$">
+    Allow from all
+</FilesMatch>
+
+# 다운로드 링크를 통한 접근 허용
+RewriteEngine On
+RewriteCond %{REQUEST_URI} ^/download.php$
+RewriteCond %{QUERY_STRING} ^file=([a-zA-Z0-9_]+)$
+RewriteRule ^download\.php$ /var/www/html/download.php [L]
+

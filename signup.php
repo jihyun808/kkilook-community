@@ -8,7 +8,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     || !$password) {
         die("모든 필드를 입력해주세요.");
     }
-    $conn = new mysqli("localhost", "webuser", "webpass", "user_db"); if 
+    require_once '/var/www/dbinfo.php'; if 
     ($conn->connect_error) die("DB 연결 실패: " . $conn->connect_error); 
     $stmt = $conn->prepare("SELECT id FROM users WHERE email = ?"); 
     $stmt->bind_param("s", $email); $stmt->execute(); 

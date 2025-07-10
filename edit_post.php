@@ -9,7 +9,7 @@ if (!isset($_SESSION['user_id'])) {
   die("로그인이 필요합니다.");
 }
 
-$conn = new mysqli("localhost", "webuser", "webpass", "user_db");
+require_once '/var/www/dbinfo.php';
 $conn->set_charset("utf8");
 
 $post_id = (int)($_GET['id'] ?? 0);

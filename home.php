@@ -4,7 +4,7 @@ ob_start();
 session_start();
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
-$conn = new mysqli("localhost", "webuser", "webpass", "user_db");
+require_once '/var/www/dbinfo.php';
 if ($conn->connect_error) die("DB 연결 실패: " . $conn->connect_error);
 $logged_in = isset($_SESSION['user_id']);
 $logged_in_username = '';

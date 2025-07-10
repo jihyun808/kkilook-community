@@ -4,7 +4,7 @@
 session_start(); ini_set('display_errors', 1); error_reporting(E_ALL); 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = $_POST['email'] ?? ''; $password = $_POST['password'] ?? 
-    ''; $conn = new mysqli("localhost", "webuser", "webpass", "user_db"); if 
+    ''; require_once '/var/www/dbinfo.php'; if 
     ($conn->connect_error) die("DB 연결 실패: " . $conn->connect_error); 
     $stmt = $conn->prepare("SELECT id, username, password FROM users 
     WHERE email = ?"); $stmt->bind_param("s", $email); $stmt->execute(); 

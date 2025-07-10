@@ -11,11 +11,11 @@ $category = $_POST['category'] ?? '';
 $title = $_POST['title'] ?? '';
 $content = $_POST['content'] ?? '';
 $user_id = $_SESSION['user_id'];
-$upload_dir = "uploads/";
+$upload_dir = __DIR__ . '/../kkilookCM_F/';
 $filename = null;
 $original_name = null;
 
-$conn = new mysqli("localhost", "webuser", "webpass", "user_db");
+require_once '/var/www/dbinfo.php';
 $conn->set_charset("utf8");
 
 // 권한 확인
